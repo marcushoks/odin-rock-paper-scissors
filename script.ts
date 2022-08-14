@@ -4,9 +4,14 @@ enum Result {
   DRAW,
 }
 
+enum Choice {
+  ROCK = "ROCK",
+  PAPER = "PAPER",
+  SCISSORS = "SCISSORS",
+}
+
 const getComputerChoice = () => {
-  const choices = ["ROCK", "PAPER", "SCISSORS"];
-  const choice = choices[Math.floor(Math.random() * 3)];
+  const choice = Object.keys(Choice)[Math.floor(Math.random() * 3)];
   console.log(`Computer played ${choice}.`);
   return choice;
 };
@@ -16,9 +21,9 @@ const getPlayerChoice = (round: number = 1) => {
     const playerInput = prompt(`Round ${round}\nRock Paper Scissors: `);
 
     if (playerInput) {
-      if (RegExp("rock", "i").test(playerInput)) return "ROCK";
-      if (RegExp("paper", "i").test(playerInput)) return "PAPER";
-      if (RegExp("scissors", "i").test(playerInput)) return "SCISSORS";
+      if (RegExp("rock", "i").test(playerInput)) return Choice.ROCK;
+      if (RegExp("paper", "i").test(playerInput)) return Choice.PAPER;
+      if (RegExp("scissors", "i").test(playerInput)) return Choice.SCISSORS;
     }
 
     console.warn("Invalid input, please try again.");
@@ -26,18 +31,18 @@ const getPlayerChoice = (round: number = 1) => {
 };
 
 const evaluate = (playerChoice: string, computerChoice: string) => {
-  if (playerChoice === "ROCK" && computerChoice === "SCISSORS")
+  if (playerChoice === Choice.ROCK && computerChoice === Choice.SCISSORS)
     return Result.WIN;
-  if (playerChoice === "SCISSORS" && computerChoice === "PAPER")
+  if (playerChoice === Choice.SCISSORS && computerChoice === Choice.PAPER)
     return Result.WIN;
-  if (playerChoice === "PAPER" && computerChoice === "ROCK")
+  if (playerChoice === Choice.PAPER && computerChoice === Choice.ROCK)
     return Result.WIN;
 
-  if (computerChoice === "ROCK" && playerChoice === "SCISSORS")
+  if (computerChoice === Choice.ROCK && playerChoice === Choice.SCISSORS)
     return Result.LOSE;
-  if (computerChoice === "SCISSORS" && playerChoice === "PAPER")
+  if (computerChoice === Choice.SCISSORS && playerChoice === Choice.PAPER)
     return Result.LOSE;
-  if (computerChoice === "PAPER" && playerChoice === "ROCK")
+  if (computerChoice === Choice.PAPER && playerChoice === Choice.ROCK)
     return Result.LOSE;
 
   return Result.DRAW;
