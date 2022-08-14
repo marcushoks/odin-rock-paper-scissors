@@ -55,11 +55,11 @@ const game = (rounds: number) => {
 
     switch (evaluate(playerChoice, computerChoice)) {
       case Result.WIN:
-        win++;
+        ++win;
         console.log(`You WIN! ${playerChoice} beats ${computerChoice}.`);
         break;
       case Result.LOSE:
-        lose++;
+        ++lose;
         console.log(`You LOSE! ${computerChoice} beats ${playerChoice}.`);
         break;
       case Result.DRAW:
