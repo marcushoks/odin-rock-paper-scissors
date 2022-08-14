@@ -55,7 +55,7 @@ const game = (rounds: number) => {
   for (let i = 1; i <= rounds; i++) {
     console.log(`Round ${i} of ${rounds}. WON ${win} - LOST ${lose}`);
 
-    const playerChoice = getPlayerChoice();
+    const playerChoice = getPlayerChoice(i);
     const computerChoice = getComputerChoice();
 
     switch (evaluate(playerChoice, computerChoice)) {
