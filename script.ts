@@ -10,34 +10,65 @@ enum Choice {
   SCISSORS = "SCISSORS",
 }
 
-const btnGroup = document.querySelectorAll(".player-btn");
-btnGroup.forEach((btn) => {
-  btn.addEventListener("click", (event) => {
-    console.log(event.target);
-  });
-});
+let wins = 0;
+let loses = 0;
 
-const getComputerChoice = () => {
+const score = document.querySelector(".score-board");
+const message = document.querySelector(".result-message");
+
+const btnGroup = document.querySelectorAll(".player-btn");
+btnGroup.forEach((btn) => btn.addEventListener("click", playRound));
+
+function playRound(e: Event) {
+  const playerChoice = getPlayerChoice(e) || Choice.ROCK;
+  const computerChoice = getComputerChoice();
+
+  if (message) {
+    switch (evaluate(playerChoice, computerChoice)) {
+      case Result.WIN: {
+        ++wins;
+        message.textContent = `You WIN! ${playerChoice} beats ${computerChoice}.`;
+        break;
+      }
+      case Result.LOSE: {
+        ++loses;
+        message.textContent = `You LOSE! ${computerChoice} beats ${playerChoice}.`;
+        break;
+      }
+      case Result.DRAW: {
+        message.textContent = "It's a DRAW!";
+        break;
+      }
+    }
+  }
+
+  if (score) {
+    updateScore(score, wins, loses);
+  }
+}
+
+function getPlayerChoice(e: Event) {
+  const target = e.target as HTMLButtonElement;
+
+  switch (target.id) {
+    case "rock":
+      return Choice.ROCK;
+    case "paper":
+      return Choice.PAPER;
+    case "scissors":
+      return Choice.SCISSORS;
+    default:
+      console.log("Something went wrong!");
+  }
+}
+
+function getComputerChoice() {
   const choice = Object.keys(Choice)[Math.floor(Math.random() * 3)];
   console.log(`Computer played ${choice}.`);
   return choice;
-};
+}
 
-const getPlayerChoice = (round: number = 1) => {
-  while (true) {
-    const playerInput = prompt(`Round ${round}\nRock Paper Scissors: `);
-
-    if (playerInput) {
-      if (RegExp("rock", "i").test(playerInput)) return Choice.ROCK;
-      if (RegExp("paper", "i").test(playerInput)) return Choice.PAPER;
-      if (RegExp("scissors", "i").test(playerInput)) return Choice.SCISSORS;
-    }
-
-    console.warn("Invalid input, please try again.");
-  }
-};
-
-const evaluate = (playerChoice: string, computerChoice: string) => {
+function evaluate(playerChoice: string, computerChoice: string) {
   if (playerChoice === Choice.ROCK && computerChoice === Choice.SCISSORS)
     return Result.WIN;
   if (playerChoice === Choice.SCISSORS && computerChoice === Choice.PAPER)
@@ -53,28 +84,8 @@ const evaluate = (playerChoice: string, computerChoice: string) => {
     return Result.LOSE;
 
   return Result.DRAW;
-};
+}
 
-const game = (rounds: number) => {
-  let win = 0;
-  let lose = 0;
-
-  const playerChoice = getPlayerChoice();
-  const computerChoice = getComputerChoice();
-
-  switch (evaluate(playerChoice, computerChoice)) {
-    case Result.WIN:
-      ++win;
-      console.log(`You WIN! ${playerChoice} beats ${computerChoice}.`);
-      break;
-    case Result.LOSE:
-      ++lose;
-      console.log(`You LOSE! ${computerChoice} beats ${playerChoice}.`);
-      break;
-    case Result.DRAW:
-      console.log("It's a DRAW!");
-      break;
-  }
-};
-
-// game(5);
+function updateScore(scoreboard: Element, wins: number, loses: number) {
+  scoreboard.textContent = `${wins} - ${loses}`;
+}
