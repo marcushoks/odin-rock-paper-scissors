@@ -10,6 +10,13 @@ enum Choice {
   SCISSORS = "SCISSORS",
 }
 
+const btnGroup = document.querySelectorAll(".player-btn");
+btnGroup.forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    console.log(event.target);
+  });
+});
+
 const getComputerChoice = () => {
   const choice = Object.keys(Choice)[Math.floor(Math.random() * 3)];
   console.log(`Computer played ${choice}.`);
@@ -52,28 +59,22 @@ const game = (rounds: number) => {
   let win = 0;
   let lose = 0;
 
-  for (let i = 1; i <= rounds; i++) {
-    console.log(`Round ${i} of ${rounds}. WON ${win} - LOST ${lose}`);
+  const playerChoice = getPlayerChoice();
+  const computerChoice = getComputerChoice();
 
-    const playerChoice = getPlayerChoice(i);
-    const computerChoice = getComputerChoice();
-
-    switch (evaluate(playerChoice, computerChoice)) {
-      case Result.WIN:
-        ++win;
-        console.log(`You WIN! ${playerChoice} beats ${computerChoice}.`);
-        break;
-      case Result.LOSE:
-        ++lose;
-        console.log(`You LOSE! ${computerChoice} beats ${playerChoice}.`);
-        break;
-      case Result.DRAW:
-        console.log("It's a DRAW!");
-        break;
-    }
+  switch (evaluate(playerChoice, computerChoice)) {
+    case Result.WIN:
+      ++win;
+      console.log(`You WIN! ${playerChoice} beats ${computerChoice}.`);
+      break;
+    case Result.LOSE:
+      ++lose;
+      console.log(`You LOSE! ${computerChoice} beats ${playerChoice}.`);
+      break;
+    case Result.DRAW:
+      console.log("It's a DRAW!");
+      break;
   }
-
-  console.log(`FINAL RESULTS: WON ${win} - LOST ${lose}`);
 };
 
-game(5);
+// game(5);
