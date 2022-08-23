@@ -45,6 +45,18 @@ function playRound(e: Event) {
   if (score) {
     updateScore(score, wins, loses);
   }
+
+  if (wins >= 5 || loses >= 5) {
+    if (message) {
+      if (wins > loses) {
+        message.textContent = "You won the match!";
+      } else {
+        message.textContent = "You lost the match!";
+      }
+    }
+
+    btnGroup.forEach((btn) => btn.removeEventListener("click", playRound));
+  }
 }
 
 function getPlayerChoice(e: Event) {
