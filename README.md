@@ -2,4 +2,4 @@
 
 A super simple rock paper scissors game.
 Now with buttons!\
-_GUI will be cleaned up later_
+_GUI will be cleaned up later... maybe_
