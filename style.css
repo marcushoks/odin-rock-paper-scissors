@@ -105,3 +105,15 @@ body {
 .player-btn:hover {
   background-color: red;
 }
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4em;
+  text-align: center;
+}
+
+a {
+  color: red;
+}
