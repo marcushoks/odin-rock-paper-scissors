@@ -22,6 +22,10 @@ body {
   font-family: Inter, "Helvetica", sans-serif;
 }
 
+.bg-gray {
+  background-color: #3e4042;
+}
+
 .game-info {
   display: flex;
   justify-content: center;
@@ -41,7 +45,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #3e4042;
   border-radius: 50%;
   width: 2em;
   height: 2em;
@@ -58,4 +61,18 @@ body {
 
 .score {
   font-size: 3rem;
+}
+
+.middle-section {
+  display: flex;
+  justify-content: center;
+}
+
+.opponent-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 10%;
 }
