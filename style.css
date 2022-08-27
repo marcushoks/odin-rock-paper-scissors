@@ -82,3 +82,26 @@ body {
   text-align: center;
   font-size: 2rem;
 }
+
+.player-input {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+
+.player-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 2em;
+  height: 2em;
+  border-radius: 10%;
+  font-size: 3rem;
+  border: 0;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.player-btn:hover {
+  background-color: red;
+}
