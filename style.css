@@ -80,10 +80,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2em;
-  height: 2em;
+  min-width: 2em;
+  min-height: 2em;
   border-radius: 10%;
-  font-size: 10rem;
+  font-size: 12rem;
 }
 
 .round-result-message {
@@ -101,10 +101,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2em;
-  height: 2em;
+  min-width: 2em;
+  min-height: 2em;
   border-radius: 10%;
-  font-size: 3rem;
+  font-size: 4rem;
   border: 0;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
   cursor: pointer;
