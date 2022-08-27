@@ -72,7 +72,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15rem;
-  height: 15rem;
+  width: 2em;
+  height: 2em;
   border-radius: 10%;
+  font-size: 10rem;
 }
