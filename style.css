@@ -77,3 +77,8 @@ body {
   border-radius: 10%;
   font-size: 10rem;
 }
+
+.round-result-message {
+  text-align: center;
+  font-size: 2rem;
+}
