@@ -2,6 +2,7 @@
 
 html {
   font-size: 16px;
+  transition: font-size ease 0.25s;
 }
 
 @media (max-width: 600px) {
