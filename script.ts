@@ -31,6 +31,7 @@ closeBtn?.addEventListener("click", () => {
 const playAgainBtn = document.querySelector(".play-again-btn");
 playAgainBtn?.addEventListener("click", () => {
   gameoverDialog?.close();
+  playAgain();
 });
 
 const gameoverMsg = document.querySelector(".gameover-result-message");
@@ -117,4 +118,19 @@ function evaluate(playerChoice: string, computerChoice: string) {
 
 function updateScore(scoreboard: Element, wins: number, loses: number) {
   scoreboard.textContent = `${wins} - ${loses}`;
+}
+
+function playAgain() {
+  if (score) {
+    score.textContent = "0 - 0";
+  }
+
+  wins = 0;
+  loses = 0;
+
+  if (roundMsg) {
+    roundMsg.innerHTML = "&nbsp;";
+  }
+
+  btnGroup.forEach((btn) => btn.addEventListener("click", playRound));
 }
