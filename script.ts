@@ -191,6 +191,10 @@ function playAgain() {
     opponentEmotion.textContent = "🙂";
   }
 
+  if (opponentInput) {
+    opponentInput.textContent = "";
+  }
+
   if (roundMsg) {
     roundMsg.innerHTML = "&nbsp;";
   }
