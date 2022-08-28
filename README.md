@@ -1,5 +1,5 @@
 # odin-rock-paper-scissors
 
 A super simple rock paper scissors game.
-Now with buttons!\
-_GUI will be cleaned up later... maybe_
+
+28/08/2022 - Now with proper GUI!
