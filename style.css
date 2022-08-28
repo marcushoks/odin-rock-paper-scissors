@@ -115,6 +115,10 @@ body {
   background-color: red;
 }
 
+.player-btn:active {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
 footer {
   display: flex;
   justify-content: center;
