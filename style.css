@@ -96,7 +96,7 @@ body {
 .player-input {
   display: flex;
   justify-content: center;
-  gap: 2em;
+  gap: 4em;
 }
 
 .player-btn {
