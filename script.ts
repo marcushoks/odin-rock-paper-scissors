@@ -14,7 +14,9 @@ let wins = 0;
 let loses = 0;
 
 const score = document.querySelector(".score");
-const roundMsg = document.querySelector(".round-result-message");
+
+const playerEmotion = document.querySelector("#player-emotion");
+const opponentEmotion = document.querySelector("#opponent-emotion");
 
 const btnGroup = document.querySelectorAll(".player-btn");
 btnGroup.forEach((btn) => btn.addEventListener("click", playRound));
@@ -34,6 +36,7 @@ playAgainBtn?.addEventListener("click", () => {
   playAgain();
 });
 
+const roundMsg = document.querySelector(".round-result-message");
 const gameoverMsg = document.querySelector(".gameover-result-message");
 
 function playRound(e: Event) {
@@ -59,11 +62,47 @@ function playRound(e: Event) {
     }
   }
 
+  const emote = (emotion: Element, point: number) => {
+    switch (point) {
+      case 1: {
+        emotion.textContent = "😀";
+        break;
+      }
+      case 2: {
+        emotion.textContent = "😄";
+        break;
+      }
+      case 3: {
+        emotion.textContent = "😁";
+        break;
+      }
+      case 4: {
+        emotion.textContent = "😎";
+        break;
+      }
+      case 5: {
+        emotion.textContent = "👑";
+        break;
+      }
+    }
+  };
+
+  if (playerEmotion && opponentEmotion) {
+    emote(playerEmotion, wins);
+    emote(opponentEmotion, loses);
+  }
+
   if (score) {
     updateScore(score, wins, loses);
   }
 
   if (wins >= 5 || loses >= 5) {
+    if (wins >= 5 && opponentEmotion) {
+      opponentEmotion.textContent = "😭";
+    } else if (playerEmotion) {
+      playerEmotion.textContent = "😭";
+    }
+
     gameoverDialog?.showModal();
     if (gameoverMsg) {
       if (wins > loses) {
@@ -127,6 +166,11 @@ function playAgain() {
 
   wins = 0;
   loses = 0;
+
+  if (playerEmotion && opponentEmotion) {
+    playerEmotion.textContent = "🙂";
+    opponentEmotion.textContent = "🙂";
+  }
 
   if (roundMsg) {
     roundMsg.innerHTML = "&nbsp;";
