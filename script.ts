@@ -18,6 +18,8 @@ const score = document.querySelector(".score");
 const playerEmotion = document.querySelector("#player-emotion");
 const opponentEmotion = document.querySelector("#opponent-emotion");
 
+const opponentInput = document.querySelector(".opponent-input");
+
 const btnGroup = document.querySelectorAll(".player-btn");
 btnGroup.forEach((btn) => btn.addEventListener("click", playRound));
 
@@ -133,7 +135,24 @@ function getPlayerChoice(e: Event) {
 
 function getComputerChoice() {
   const choice = Object.keys(Choice)[Math.floor(Math.random() * 3)];
-  console.log(`Computer played ${choice}.`);
+
+  if (opponentInput) {
+    switch (choice) {
+      case Choice.ROCK: {
+        opponentInput.textContent = "✊";
+        break;
+      }
+      case Choice.PAPER: {
+        opponentInput.textContent = "🖐";
+        break;
+      }
+      case Choice.SCISSORS: {
+        opponentInput.textContent = "✌";
+        break;
+      }
+    }
+  }
+
   return choice;
 }
 
