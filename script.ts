@@ -13,30 +13,46 @@ enum Choice {
 let wins = 0;
 let loses = 0;
 
-const score = document.querySelector(".score-board");
-const message = document.querySelector(".result-message");
+const score = document.querySelector(".score");
+const roundMsg = document.querySelector(".round-result-message");
 
 const btnGroup = document.querySelectorAll(".player-btn");
 btnGroup.forEach((btn) => btn.addEventListener("click", playRound));
+
+const gameoverDialog = document.querySelector(
+  "#gameover-dialog"
+) as HTMLDialogElement;
+
+const closeBtn = document.querySelector(".close-btn");
+closeBtn?.addEventListener("click", () => {
+  gameoverDialog?.close();
+});
+
+const playAgainBtn = document.querySelector(".play-again-btn");
+playAgainBtn?.addEventListener("click", () => {
+  gameoverDialog?.close();
+});
+
+const gameoverMsg = document.querySelector(".gameover-result-message");
 
 function playRound(e: Event) {
   const playerChoice = getPlayerChoice(e) || Choice.ROCK;
   const computerChoice = getComputerChoice();
 
-  if (message) {
+  if (roundMsg) {
     switch (evaluate(playerChoice, computerChoice)) {
       case Result.WIN: {
         ++wins;
-        message.textContent = `You WIN! ${playerChoice} beats ${computerChoice}.`;
+        roundMsg.textContent = `You WIN! ${playerChoice} beats ${computerChoice}.`;
         break;
       }
       case Result.LOSE: {
         ++loses;
-        message.textContent = `You LOSE! ${computerChoice} beats ${playerChoice}.`;
+        roundMsg.textContent = `You LOSE! ${computerChoice} beats ${playerChoice}.`;
         break;
       }
       case Result.DRAW: {
-        message.textContent = "It's a DRAW!";
+        roundMsg.textContent = "It's a DRAW!";
         break;
       }
     }
@@ -47,11 +63,12 @@ function playRound(e: Event) {
   }
 
   if (wins >= 5 || loses >= 5) {
-    if (message) {
+    gameoverDialog?.showModal();
+    if (gameoverMsg) {
       if (wins > loses) {
-        message.textContent = "You won the match!";
+        gameoverMsg.textContent = "You won the match!";
       } else {
-        message.textContent = "You lost the match!";
+        gameoverMsg.textContent = "You lost the match!";
       }
     }
 
