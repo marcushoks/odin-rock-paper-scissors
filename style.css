@@ -29,7 +29,8 @@ body {
   gap: 3em;
 }
 
-.bg-gray {
+.bg-gray,
+.close-btn:hover {
   background-color: #3e4042;
 }
 
@@ -130,4 +131,67 @@ footer {
 
 a {
   color: red;
+}
+
+#gameover-dialog {
+  position: fixed;
+  background-color: #2e2f32;
+  border: 0;
+  border-radius: 20px;
+  width: 25rem;
+  height: 15rem;
+  margin-top: 50vh;
+  transform: translate(0, -50%);
+}
+
+#gameover-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.gameover-dialog__container {
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.close-btn__container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.close-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  color: red;
+  background-color: transparent;
+  font-size: 1.75rem;
+  cursor: pointer;
+}
+
+.gameover-result-message {
+  font-size: 1.5rem;
+}
+
+.play-again-btn {
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  color: white;
+  font-size: 1rem;
+}
+
+.play-again-btn:hover {
+  background-color: white;
+  color: black;
 }
